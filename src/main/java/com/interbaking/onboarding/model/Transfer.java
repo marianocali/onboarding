@@ -2,7 +2,7 @@ package com.interbaking.onboarding.model;
 
 import jakarta.persistence.*;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 @Entity
 public class Transfer {
@@ -16,10 +16,11 @@ public class Transfer {
     private Double amount;
 
     @Column
-    private ZonedDateTime date;
+    private LocalDateTime date;
 
-    @Column
-    private String companyId;
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
 
     @Column
     private String debitAccount;
@@ -28,6 +29,7 @@ public class Transfer {
     private String creditAccount;
 
     public Transfer() {
+        //empty Controller for dependency injection purpose
     }
 
     public Integer getId() {
@@ -46,20 +48,20 @@ public class Transfer {
         this.amount = amount;
     }
 
-    public ZonedDateTime getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(ZonedDateTime date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
-    public String getCompanyId() {
-        return companyId;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public String getDebitAccount() {

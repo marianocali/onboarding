@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,13 +31,18 @@ public class CompanyController {
     }
 
     @GetMapping("/{companyId}")
-    public ResponseEntity<Company> getCompany(@PathVariable Integer id){
-        Optional<Company> optionalCompany = companyService.findById(id);
+    public ResponseEntity<Company> getCompany(@PathVariable Integer companyId){
+        Optional<Company> optionalCompany = companyService.findById(companyId);
         if(optionalCompany.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(optionalCompany.get(), HttpStatus.OK);
     }
 
+    @GetMapping("/transferLastMonth")
+    public ResponseEntity<List<String>> getCompaniesWithTransferLastMonth(){
+        List<String> companyNames = companyService.getCompaniesWithTransferLastMonth();
+        return new ResponseEntity<>(companyNames, HttpStatus.OK);
+    }
 
 }
