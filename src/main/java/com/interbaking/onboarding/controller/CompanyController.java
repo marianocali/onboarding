@@ -33,7 +33,7 @@ public class CompanyController {
     public ResponseEntity<Company> getCompany(@PathVariable Integer companyId){
         Optional<Company> optionalCompany = companyService.findById(companyId);
         if(optionalCompany.isEmpty()){
-            throw new CompanyNotFoundException("The company with id" + companyId + " was not found");
+            throw new CompanyNotFoundException("The company with id " + companyId + " was not found");
         }
         return new ResponseEntity<>(optionalCompany.get(), HttpStatus.OK);
     }
@@ -44,7 +44,7 @@ public class CompanyController {
         return new ResponseEntity<>(companyNames, HttpStatus.OK);
     }
 
-    @GetMapping("companiesAddedLastMonth")
+    @GetMapping("/companiesAddedLastMonth")
     public ResponseEntity<List<String>> getCompaniesAddedLastMonth(){
         List<String> newCompanies = companyService.getCompaniesAddedLastMonth();
         return new ResponseEntity<>(newCompanies, HttpStatus.OK);

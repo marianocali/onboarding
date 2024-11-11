@@ -44,16 +44,6 @@ public class TransferController {
         return ResponseEntity.ok(savedTransfer);
     }
 
-//    @RequestMapping("/")
-//    public Transfer addTransfer(@Valid @RequestBody TransferRequest transferReq){
-//        int id = transferReq.get
-//        Optional<Company> optionalCompany = companyService.findById(id);
-//        if(optionalCompany.isEmpty()){
-//            throw new CompanyNotFoundException("The company with id " + id + " was not found");
-//        }
-//        return transferService.addTransfer(transfer);
-//    }
-
     @GetMapping("/{transferId}")
     public ResponseEntity<Transfer> findById(@PathVariable Integer transferId){
         Optional<Transfer> optTransfer = transferService.findById(transferId);
