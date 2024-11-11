@@ -15,17 +15,18 @@ import java.util.Optional;
 @Repository
 public interface CompanyRepository extends CrudRepository<Company, Integer> {
 
-    LocalDate localDate = LocalDate.now();
-    // get Month enum value field
-    Integer currentMonth = Integer.valueOf(String.valueOf(localDate.getMonth()));
-
    @Query(" SELECT c.name " +
         " FROM Company c " +
         " JOIN Transfer t " +
         " ON c.id = t.company.id " +
         " WHERE MONTH (t.date) = MONTH (CURRENT_DATE)"
-           // " WHERE MONTH (c.date) = cast(:currentMonth as int) "
     )
    List<String> getCompaniesWithTransferLastMonth();
+
+    @Query(" SELECT c.name " +
+            " FROM Company c " +
+            " WHERE MONTH (c.startDate) = MONTH (CURRENT_DATE)"
+    )
+    List<String> getCompaniesAddedLastMonth();
 
 }

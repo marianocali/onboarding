@@ -12,4 +12,6 @@ public interface CompanyService {
     Optional<Company> findById(Integer id);
 
     List<String> getCompaniesWithTransferLastMonth();
+
+    List<String> getCompaniesAddedLastMonth();
 }

@@ -32,4 +32,9 @@ public class CompanyServiceImpl implements CompanyService{
         return companyRepo.getCompaniesWithTransferLastMonth();
     }
 
+    @Override
+    public List<String> getCompaniesAddedLastMonth() {
+        return companyRepo.getCompaniesAddedLastMonth();
+    }
+
 }
