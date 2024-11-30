@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 @Entity
 public class Company {
@@ -26,6 +25,7 @@ public class Company {
 
     public Company() {
     }
+
 
     public Integer getId() {
         return id;
